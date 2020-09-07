@@ -6,3 +6,16 @@ Attempt at packaging Liquibase and its MongoDB extension inside a Docker image.
 * [Liquibase](https://github.com/liquibase/liquibase)
 * [Liquibase official Docker image](https://github.com/liquibase/docker) (without MongoDB extension)
 * [Liquibase MongoDB extension](https://github.com/liquibase/liquibase-mongodb)
+
+## How to use it
+
+When this works, here is how I'd expect to use it.
+
+```bash
+$ docker build . --tag "liquibase-mongo:4.0.0"  
+$ docker run --rm -v \
+"/Users/mmarcon/mongodb/code/mmarcon/liquibase-mongo-docker/example/changelog:/liquibase/changelog" liquibase-mongo:4.0.0 \
+--url="mongodb://localhost:27017/liquibase_test" --changeLogFile=changelog.xml --logLevel=info --liquibaseProLicenseKey="<MY_KEY>" generateChangeLog
+```
+
+The [example/playgrounds/seed-db.mongodb](example/playgrounds/seed-db.mongodb) contains a [MongoDB Playground](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode#mongodb-playgrounds) file to seed a test DB.

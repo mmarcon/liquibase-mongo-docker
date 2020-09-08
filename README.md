@@ -14,8 +14,8 @@ When this works, here is how I'd expect to use it.
 ```bash
 $ docker build . --tag "liquibase-mongo:4.0.0"  
 $ docker run --rm -v \
-"/Users/mmarcon/mongodb/code/mmarcon/liquibase-mongo-docker/example/changelog:/liquibase/changelog" liquibase-mongo:4.0.0 \
---url="mongodb://localhost:27017/liquibase_test" --changeLogFile=changelog.xml --logLevel=info --liquibaseProLicenseKey="<MY_KEY>" generateChangeLog
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.0.0 \
+--url="mongodb://host.docker.internal:27017/liquibase_test" --changeLogFile=changelog/changelog.xml --logLevel=info update
 ```
 
 The [example/playgrounds/seed-db.mongodb](example/playgrounds/seed-db.mongodb) contains a [MongoDB Playground](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode#mongodb-playgrounds) file to seed a test DB.

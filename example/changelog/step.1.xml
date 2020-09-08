@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+              http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property  name="collection.name"  value="myCollection"/>
+    <changeSet id="1" author="max">
+        <ext:createCollection collectionName="${collection.name}">
+            <ext:options>
+
+               {
+
+                    validator: {
+
+                        $jsonSchema: {
+
+                            bsonType: "object",
+
+                            required: ["name", "address"],
+
+                            properties: {
+
+                                name: {
+
+                                    bsonType: "string",
+
+                                    description: "The Name"
+
+                                },
+
+                                address: {
+
+                                    bsonType: "string",
+
+                                    description: "The Address"
+
+                                }
+
+                            }
+
+                        }
+
+                    },
+
+                    validationAction: "warn",
+                    validationLevel: "strict"
+
+                }
+
+
+            </ext:options>
+        </ext:createCollection>
+        <ext:createIndex collectionName="${collection.name}">
+            <ext:keys>
+                { name: 1}
+            </ext:keys>
+            <ext:options>
+                {name: "_liquibase_name_1"}
+            </ext:options>
+        </ext:createIndex>
+    </changeSet>
+</databaseChangeLog>

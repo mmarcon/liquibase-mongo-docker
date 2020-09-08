@@ -11,35 +11,20 @@
                 {
                     collMod: "${collection.name}",
                     validator: {
-
                         $jsonSchema: {
-
                             bsonType: "object",
-
                             required: ["name"],
-
                             properties: {
-
                                 name: {
-
                                     bsonType: "string",
-
                                     description: "The Name"
-
                                 },
-
                                 address: {
-
                                     bsonType: "string",
-
                                     description: "The Address"
-
                                 }
-
                             }
-
                         }
-
                     },
                     validationAction: "warn",
                     validationLevel: "strict"

@@ -8,49 +8,29 @@
     <changeSet id="1" author="max">
         <ext:createCollection collectionName="${collection.name}">
             <ext:options>
-
                {
-
                     validator: {
-
                         $jsonSchema: {
-
                             bsonType: "object",
-
                             required: ["name", "address"],
-
                             properties: {
-
                                 name: {
-
                                     bsonType: "string",
-
                                     description: "The Name"
-
                                 },
-
                                 address: {
-
                                     bsonType: "string",
-
                                     description: "The Address"
-
                                 }
-
                             }
-
                         }
-
                     },
-
                     validationAction: "warn",
                     validationLevel: "strict"
-
                 }
-
-
             </ext:options>
         </ext:createCollection>
+
         <ext:createIndex collectionName="${collection.name}">
             <ext:keys>
                 { name: 1}

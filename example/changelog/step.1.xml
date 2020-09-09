@@ -39,5 +39,15 @@
                 {name: "_liquibase_name_1"}
             </ext:options>
         </ext:createIndex>
+
+        <rollback>
+            <ext:runCommand>
+                <ext:command>
+                    {
+                        drop: "${collection.name}"
+                    }
+                </ext:command>
+            </ext:runCommand>
+        </rollback>
     </changeSet>
 </databaseChangeLog>

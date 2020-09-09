@@ -31,5 +31,32 @@
                 }
             </ext:command>
         </ext:runCommand>
+        <rollback>
+            <ext:runCommand>
+                <ext:command>
+                    {
+                        collMod: "${collection.name}",
+                        validator: {
+                            $jsonSchema: {
+                                bsonType: "object",
+                                required: ["name", "address"],
+                                properties: {
+                                    name: {
+                                        bsonType: "string",
+                                        description: "The Name"
+                                    },
+                                    address: {
+                                        bsonType: "string",
+                                        description: "The Address"
+                                    }
+                                }
+                            }
+                        },
+                        validationAction: "warn",
+                        validationLevel: "strict"
+                    }
+                </ext:command>
+            </ext:runCommand>
+        </rollback>
     </changeSet>
 </databaseChangeLog>

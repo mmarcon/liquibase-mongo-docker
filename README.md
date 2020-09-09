@@ -46,5 +46,7 @@ For more information about mongosh, please see our docs: https://docs.mongodb.co
 ```
 
 ## Known issues
-* Does not work with a connection screen that uses the `mongodb+srv://` protocol yet. Looks like Liquibase uses the protocol in the URI to select the extension to use and for MongoDB it only supports `mongodb://`.
+* Does not work with a connection string that uses the `mongodb+srv://` protocol yet. Looks like Liquibase uses the protocol in the URI to select the extension to use and for MongoDB it only supports `mongodb://`.
 * The `generateChangeLog` command is currently not supported for MongoDB.
+* The `tag` command seems to do nothing
+* Rollbacks seem to not do anything

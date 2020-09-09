@@ -1,6 +1,6 @@
 # liquibase-mongo-docker
 
-Attempt at packaging Liquibase and its MongoDB extension inside a Docker image.
+Liquibase and its MongoDB extension conveniently packaged in a Docker image that works out of the box.
 
 ## Links
 * [Liquibase](https://github.com/liquibase/liquibase)

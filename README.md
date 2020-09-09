@@ -42,7 +42,7 @@ Using Mongosh Beta: 0.2.1
 
 For more information about mongosh, please see our docs: https://docs.mongodb.com/mongodb-shell/
 
-> .load ./example/playgrounds/veryfy.mongodb
+> .load ./example/playgrounds/verify.mongodb
 ```
 
 ## Known issues

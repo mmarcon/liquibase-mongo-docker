@@ -16,19 +16,21 @@ WORKDIR /liquibase
 USER liquibase
 
 # Latest Liquibase Release Version
-ARG LIQUIBASE_VERSION=4.0.0
+ARG LIQUIBASE_VERSION=4.2.1
 
 # Download, verify, extract
-ARG LB_SHA256=b51e852d81f19ed2146d8bdf55d755616772ce0defef66074de4f0b33dde971b
+ARG LB_SHA256=0bf1c51fc8cbccc482f4902de9c81f313abaa27a1321a9481ef39e1b8e1369bb
 RUN set -x \
   && wget -O liquibase-${LIQUIBASE_VERSION}.tar.gz "https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz" \
+  && sha256sum liquibase-${LIQUIBASE_VERSION}.tar.gz \
   && echo "$LB_SHA256  liquibase-${LIQUIBASE_VERSION}.tar.gz" | sha256sum -c - \
   && tar -xzf liquibase-${LIQUIBASE_VERSION}.tar.gz
 
 # Setup GPG
 RUN GNUPGHOME="$(mktemp -d)" 
 
-RUN wget -O /liquibase/lib/mongodb.jar https://github.com/liquibase/liquibase-mongodb/releases/download/liquibase-mongodb-4.0.0.2/liquibase-mongodb-4.0.0.2.jar
+ARG LB_MONGO_VERSION=4.2.1
+RUN wget -O /liquibase/lib/mongodb.jar https://github.com/liquibase/liquibase-mongodb/releases/download/liquibase-mongodb-${LB_MONGO_VERSION}/liquibase-mongodb-${LB_MONGO_VERSION}.jar
 RUN wget -O /liquibase/lib/mongo-java-driver-3.10.1.jar https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/3.10.1/mongo-java-driver-3.10.1.jar
 
 COPY docker-entrypoint.sh /usr/local/bin/

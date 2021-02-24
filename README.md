@@ -12,7 +12,7 @@ Liquibase and its MongoDB extension conveniently packaged in a Docker image that
 First, build the Docker image
 
 ```bash
-$ docker build . --tag "liquibase-mongo:4.2.1"  
+$ docker build . --tag "liquibase-mongo:4.2.2"  
 ```
 
 Then use it as follow.
@@ -21,15 +21,33 @@ Then use it as follow.
 
 ```bash
 $ docker run --rm -v \
-"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.2.1 \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.2.2 \
 --url="mongodb://host.docker.internal:27017/liquibase_test" --changeLogFile=changelog/changelog.xml --logLevel=info update
 ```
-### Rollback
+
+### Tag current version
 
 ```bash
 $ docker run --rm -v \
-"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.2.1 \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.2.2 \
+--url="mongodb://host.docker.internal:27017/liquibase_test" --logLevel=info tag tagName
+```
+### Rollback
+
+#### Rollback by count
+
+```bash
+$ docker run --rm -v \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.2.2 \
 --url="mongodb://host.docker.internal:27017/liquibase_test" --changeLogFile=changelog/changelog.xml --logLevel=info rollbackCount 1
+```
+
+#### Rollback to tag
+
+```bash
+$ docker run --rm -v \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.2.2 \
+--url="mongodb://host.docker.internal:27017/liquibase_test" --changeLogFile=changelog/changelog.xml --logLevel=info rollback tagName
 ```
 
 > *Note:* Because Liquibase runs inside the Docker container and I am testing it against a local `mongod` running outside docker, I am pointing to it by
@@ -55,7 +73,4 @@ For more information about mongosh, please see our docs: https://docs.mongodb.co
 ```
 
 ## Known issues
-* Does not work with a connection string that uses the `mongodb+srv://` protocol yet. Looks like Liquibase uses the protocol in the URI to select the extension to use and for MongoDB it only supports `mongodb://`.
 * The `generateChangeLog` command is currently not supported for MongoDB.
-* The `tag` command seems to do nothing
-* Rollbacks with `rollbackCount` seem to work well but rollbacks with `tag` don't as there seeem to be no way to tag a version. However, if the tag is inserted manually in the documents that are stored in the `liquibase_test.DATABASECHANGELOG` collection then rolling back to a tag works great.

@@ -74,3 +74,4 @@ For more information about mongosh, please see our docs: https://docs.mongodb.co
 
 ## Known issues
 * The `generateChangeLog` command is currently not supported for MongoDB.
+* The `db-doc` command should be supported but in fact it breaks

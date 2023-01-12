@@ -61,17 +61,8 @@ $ docker run --rm -v \
 You can run the same playground files from the new MongoDB Shell. For example, to verify the update:
 
 ```bash
-$ mongosh
-Current sessionID:  6e6edacc4e2d50aa4430fb22
-Connecting to:      mongodb://127.0.0.1:27017
-Using MongoDB:      4.4.0
-Using Mongosh Beta: 1.0.6
-
-For more information about mongosh, please see our docs: https://docs.mongodb.com/mongodb-shell/
-
-> .load ./example/playgrounds/verify-update.mongodb
+$ mongosh ./example/playgrounds/verify-update.mongodb
 ```
-
 ## Known issues
 * The `generateChangeLog` command is currently not supported for MongoDB.
 * The `db-doc` command should be supported but in fact it breaks

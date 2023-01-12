@@ -3,7 +3,8 @@ use('liquibase_test');
 const [info] = db.getCollectionInfos({name: "myCollection"});
 const indexes = db.myCollection.getIndexes();
 const validator = info.options.validator;
-`
+
+const result = `
 ============================
 | Collection: ${info.name} |
 ============================
@@ -21,3 +22,7 @@ ${JSON.stringify(validator, null, 2)}
 -------------
 Number of indexes: ${indexes.length}
 `;
+
+console.log(result);
+
+result;

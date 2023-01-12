@@ -12,7 +12,7 @@ Liquibase and its MongoDB extension conveniently packaged in a Docker image that
 First, build the Docker image
 
 ```bash
-$ docker build . --tag "liquibase-mongo:4.5.0"  
+$ docker build . --tag "liquibase-mongo:4.18.0"  
 ```
 
 Then use it as follow.
@@ -21,7 +21,7 @@ Then use it as follow.
 
 ```bash
 $ docker run --rm -v \
-"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.5.0 \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.18.0 \
 --url="mongodb://host.docker.internal:27017/liquibase_test" --changeLogFile=changelog/changelog.xml --logLevel=info update
 ```
 
@@ -29,7 +29,7 @@ $ docker run --rm -v \
 
 ```bash
 $ docker run --rm -v \
-"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.5.0 \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.18.0 \
 --url="mongodb://host.docker.internal:27017/liquibase_test" --logLevel=info tag tagName
 ```
 ### Rollback
@@ -38,7 +38,7 @@ $ docker run --rm -v \
 
 ```bash
 $ docker run --rm -v \
-"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.5.0 \
+"`pwd`/example/changelog:/liquibase/changelog" liquibase-mongo:4.18.0 \
 --url="mongodb://host.docker.internal:27017/liquibase_test" --changeLogFile=changelog/changelog.xml --logLevel=info rollbackCount 1
 ```
 

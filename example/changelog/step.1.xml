@@ -41,13 +41,7 @@
         </ext:createIndex>
 
         <rollback>
-            <ext:runCommand>
-                <ext:command>
-                    {
-                        drop: "${collection.name}"
-                    }
-                </ext:command>
-            </ext:runCommand>
+            <ext:dropCollection collectionName="${collection.name}"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>
